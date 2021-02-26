@@ -26,6 +26,8 @@
         android:id="@+id/movie_trailer_title_textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="18dp"
         />
     <TextView
         android:id="@+id/movie_description"

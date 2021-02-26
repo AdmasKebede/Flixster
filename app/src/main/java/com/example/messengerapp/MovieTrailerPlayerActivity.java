@@ -33,6 +33,7 @@ public class MovieTrailerPlayerActivity extends YouTubeBaseActivity {
         setContentView(R.layout.activity_movie_trailer_player);
 
         movie = Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
+        double movieRatingg = movie.rating;
 
         YouTubePlayerView trailerPlayer= findViewById(R.id.player);
        TextView description = findViewById(R.id.movie_description);
@@ -59,9 +60,13 @@ public class MovieTrailerPlayerActivity extends YouTubeBaseActivity {
                     trailerPlayer.initialize(KEY, new YouTubePlayer.OnInitializedListener() {
                         @Override
                         public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
-                            Log.d("id",trailerId);
-                            youTubePlayer.loadVideo(trailerId);
-                            //youTubePlayer.cueVideo(trailerId);
+
+                            if(movieRatingg > 5){
+                                youTubePlayer.loadVideo(trailerId);
+                            }else{
+                                youTubePlayer.cueVideo(trailerId);
+                            }
+
                         }
 
                         @Override
@@ -79,7 +84,7 @@ public class MovieTrailerPlayerActivity extends YouTubeBaseActivity {
         });
 
         description.setText(movie.description);
-        rating.setRating(Float.parseFloat(String.valueOf(movie.rating)));
+        rating.setRating((float)movie.rating);
         title.setText(movie.title);
     }
 }
