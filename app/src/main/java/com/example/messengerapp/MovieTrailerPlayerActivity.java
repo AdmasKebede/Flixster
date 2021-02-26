@@ -25,15 +25,13 @@ public class MovieTrailerPlayerActivity extends YouTubeBaseActivity {
 
     Movie movie;
     final String VIDEO_URL="https://api.themoviedb.org/3/movie/";
-    final String VIDEO_API_KEY="/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
-    final String KEY="AIzaSyDBcXnkbughUIDiSTwAhNmL3m7WgOahiUk";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_trailer_player);
 
         movie = Parcels.unwrap(getIntent().getParcelableExtra(Movie.class.getSimpleName()));
-        double movieRatingg = movie.rating;
+        double movieRating = movie.rating;
 
         YouTubePlayerView trailerPlayer= findViewById(R.id.player);
        TextView description = findViewById(R.id.movie_description);
@@ -41,7 +39,7 @@ public class MovieTrailerPlayerActivity extends YouTubeBaseActivity {
        RatingBar rating = findViewById(R.id.rbVoteAverage);
 
         AsyncHttpClient client = new AsyncHttpClient();
-        client.get(VIDEO_URL+movie.id+VIDEO_API_KEY, new TextHttpResponseHandler() {
+        client.get(VIDEO_URL+movie.id+getString(R.string.Video_api_key), new TextHttpResponseHandler() {
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 Log.d("Failure","failed");
@@ -57,11 +55,11 @@ public class MovieTrailerPlayerActivity extends YouTubeBaseActivity {
                     JSONObject movie = (JSONObject) results.get(0);
                     String trailerId= (String)movie.get("key");
 
-                    trailerPlayer.initialize(KEY, new YouTubePlayer.OnInitializedListener() {
+                    trailerPlayer.initialize(getString(R.string.youtube_api_key), new YouTubePlayer.OnInitializedListener() {
                         @Override
                         public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
 
-                            if(movieRatingg > 5){
+                            if(movieRating > 5){
                                 youTubePlayer.loadVideo(trailerId);
                             }else{
                                 youTubePlayer.cueVideo(trailerId);

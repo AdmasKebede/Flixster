@@ -27,7 +27,7 @@ public class MovieDetailsActivity extends AppCompatActivity {
     Movie movie;
     final String VIDEO_URL="https://api.themoviedb.org/3/movie/";
     final String VIDEO_API_KEY="/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed";
-    final String KEY="CDGaSyDBcXnkbughUIDiSTwAhNmL3m7WgOahiUk";
+    final String KEY="AIzaSyDBcXnkbughUIDiSTwAhNmL3m7WgOahiUk";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
