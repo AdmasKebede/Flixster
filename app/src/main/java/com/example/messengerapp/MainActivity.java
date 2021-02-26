@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
                     for(int i=0;i<results.length();i++){
                         JSONObject movie = (JSONObject) results.get(i);
-                        movieList.add(new Movie(movie.getString("original_title"),movie.getString("overview"),IMAGE_URL + movie.getString("poster_path"),movie.getString("vote_average")));
+                        movieList.add(new Movie(movie.getString("original_title"),movie.getString("overview"),IMAGE_URL + movie.getString("poster_path"),Double.parseDouble(movie.getString("vote_average")),Integer.parseInt(movie.getString("id"))));
                         Log.d("title",movie.getString("original_title"));
                         Log.d("description",movie.getString("overview"));
                         Log.d("image",movie.getString("poster_path"));
